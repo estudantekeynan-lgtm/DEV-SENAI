@@ -19,21 +19,40 @@
       </Nav>
     
     </Header>
-    <h1 class="Sobre-catalogo">Sobre nosso catálogo</h1>
-      <p class="texto-s">Somos a principal plataforma digital de busca de fornecedores industriais. <br> Facilitamos a homologação de parceiros e aceleramos o ciclo de compras com inteligência de dados. <br> Encontre componentes, matérias-primas e serviços especializados para a sua operação com total confiabilidade!</p>
+    <h1 class="Contato">Contato</h1>
+      <p class="texto-c">Entre em contato para cadastrar um fornecedor</p>
   </body>
-  <hr>
+
     <main>
-      <section class="section-s1">
-        <h1 class="quantidade-s">+10 </h1>
-        <p class="forn-s">fornecedores</p>
-        <h1 class="quantidade-s">2</h1>
-        <p class="forn-s">categorias</p>
-        <h1 class="quantidade-s">1</h1>
-        <p class="forn-s">estados</p>
-        <h1 class="quantidade-s">24h/h1>
-        <p class="forn-s">Resposta média</p>
-      </section>
+        <div class="container">
+          <form action="action_page.php">
+
+            <label for="fname"></label>
+            <input type="text" id="fname" name="firstname" placeholder="Nome">
+
+            <label for="lname"></label>
+            <input type="text" id="lname" name="lastname" placeholder="Empresa">
+
+            <label for="lname"></label>
+            <input type="text" id="lname" name="lastname" placeholder="e-mail">
+
+            <label for="lname"></label>
+            <input type="text" id="lname" name="lastname" placeholder="telefone">
+
+            <label for="country">Região</label>
+            <select id="country" name="country">
+              <option value="Limeira">Limeira</option>
+              <option value="Campinas">Campinas</option>
+              <option value="Iracemapolis">Iracemapolis</option>
+            </select>
+
+            <label for="subject">Mensagem (opcional)</label>
+            <textarea id="subject" name="subject" placeholder="Mensagem" style="height:200px"></textarea>
+
+            <input type="submit" value="Enviar">
+
+          </form>
+        </div>
     </main>
     <br>
     <br>
