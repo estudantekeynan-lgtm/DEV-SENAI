@@ -78,3 +78,84 @@ HAVING COUNT(*) >= 2;
 SELECT SUM(valor_total) as faturamento
 FROM pedido
 WHERE status_pedido = 'Preparando';
+
+
+
+
+-- 16. Liste cada pedido exibindo id, data, nome do cliente, status e valor total.
+SELECT P.id_pedido, DATE_FORMAT(P.Data_pedido, '%d %m %Y  %H:%i') as data,
+c.nome as cliente, pr.nome as produto, Ip.quantidade, Ip.preco_unitario, ip.quantidade * preco_unitario as subtotal
+from pedido as p 
+INNER JOIN clientes as c 
+on c.id_cliente = p.id_cliente
+inner JOIN item_pedido as ip 
+ON ip.id_pedido = p.id_pedido
+INNER JOIN produto as pr 
+on pr.id_produto= ip.id_produto
+
+ORDER BY P.id_pedido, pr.nome;
+
+-- 17. Liste cada produto acompanhado do nome de sua categoria.
+SELECT Ca.nome as nome_categoria, Pr.nome as pedido
+FROM categoria as Ca 
+LEFT JOIN produto as Pr
+on ca.id_categoria = Pr.id_categoria; 
+
+
+-- 18. Gere um relatório dos itens vendidos: pedido, produto, quantidade,
+--     preço unitário e subtotal.
+SELECT P.id_pedido, DATE_FORMAT(P.Data_pedido, '%d %m %Y  %H:%i') as data,
+c.nome as cliente, pr.nome as produto, Ip.quantidade, Ip.preco_unitario, ip.quantidade * preco_unitario as subtotal
+from pedido as p 
+INNER JOIN clientes as c 
+on c.id_cliente = p.id_cliente
+inner JOIN item_pedido as ip 
+ON ip.id_pedido = p.id_pedido
+INNER JOIN produto as pr 
+on pr.id_produto= ip.id_produto
+
+ORDER BY P.id_pedido, pr.nome;
+
+-- 19. Mostre todos os clientes, inclusive aqueles que nunca fizeram pedidos.
+
+ SELECT C.nome , P.Id_pedido, P.Data_pedido
+ FROM clientes as C 
+ LEFT JOIN pedido as p 
+ ON P.id_cliente = C.id_cliente
+ ORDER BY C.nome;
+
+
+-- 20. Liste apenas os clientes que nunca fizeram pedidos.
+ SELECT C.id_cliente, C.Nome 
+ from clientes as C 
+ LEFT JOIN pedido as p 
+ on p.id_cliente =C.id_cliente
+ WHERE p.data_pedido is NULL; 
+
+
+-- PARTE E - DESAFIO GERENCIAL
+
+-- 21. Informe quantos pedidos FINALIZADOS cada cliente realizou e quanto
+--     cada cliente gastou. Ordene do maior gasto para o menor.
+
+SELECT c.nome as nome , Ip.quantidade as qtde_pedida , Ip.quantidade * Ip.preco_unitario as subtotal
+from clientes as c
+LEFT JOIN item_pedido as Ip 
+ON c.id_cliente = id_produto
+ORDER BY subtotal DESC;
+-- 22. Mostre a quantidade de produtos e o preço médio de cada categoria.
+
+
+-- 23. Descubra quais produtos possuem preço superior ao preço médio geral.
+
+
+-- 24. Classifique os produtos como Econômico, Intermediário ou Premium.
+--     Defina e informe suas faixas de preço.
+
+
+-- 25. CONSULTA AUTORAL
+-- Pergunta de negócio:
+--
+-- Por que essa informação é útil?
+--
+-- Consulta:
