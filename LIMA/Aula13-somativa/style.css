@@ -1,0 +1,222 @@
+:root{
+    --laranja:#000000;
+    --amarelo:#800080;
+}
+
+body{
+    background: radial-gradient( circle at 75% 25%, rgba(109,74,255,0.28),transparent 30%);
+    background-color: black;
+    color: white;
+}
+
+*{
+    margin: 0   ;
+    
+    
+}
+#Titulo{
+    color: white;
+}
+ #Titulo{
+    display: flex;
+    justify-content: flex-start;
+}
+#roxo{
+    color: #800080;
+}
+
+
+header{
+    background-color: black;
+    margin: 0px;
+    padding: 0;
+}
+nav{
+    text-align: right;
+   
+    
+    
+}
+nav a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+button a{
+    color: white;
+}
+button{
+    border-radius: 30px;
+    width: 90px;
+    height: 30px;
+    background-color: black;
+    border-color: blueviolet;
+     transition: transform 0.3s ease;
+}
+
+#NUM{
+    color: cyan;
+}
+
+#Sobre-T p{
+    color: cyan;
+    
+}
+.sobre{
+    margin: 40px;
+    padding: 10px;
+     background: radial-gradient( circle at 75% 25%, rgba(109,74,255,0.28),transparent 30%);
+}
+#Sobre-T h1{
+    font-size: 50px;
+}
+#Sobre-T img{
+    
+    width: 320px;
+    height: 340px;
+
+}
+#Sobre-T{
+     display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 48px;                      
+  align-items: center;  
+}
+
+#Sobre-Info button{
+    background-color: palevioletred;
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+
+}
+#Sobre-Info a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.intro h4{
+    color:cyan ;
+}
+#intro-img img{
+    width: 400px;
+}
+#intro-img{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.A90{
+    margin: 40px;
+    padding: 10px;
+     /* background: radial-gradient( circle at 75% 25%, rgba(109,74,255,0.28),transparent 30%); */
+}
+#especial-1 {
+    text-align: center;
+}
+#especial-img img{
+    width: 350px;
+    height: 450px;
+}
+#especial-img{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.especial{
+    margin: 40px;
+    padding: 10px;
+     background: radial-gradient( circle at 75% 25%, rgba(109,74,255,0.28),transparent 30%);
+}
+
+@media (max-width: 800px) {
+    #especial-img {
+        grid-template-columns: 1fr;
+        gap: 23px;
+    }
+}
+
+.PP-img img{
+    width: 390px;
+    height: 150px;
+}
+.PP-img{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+    
+}
+
+.PP{
+    margin: 40px;
+    padding: 10px; 
+     background: radial-gradient( circle at 75% 25%, rgba(109,74,255,0.28),transparent 30%);
+}
+#Laranja{
+    color: rgb(184, 149, 86);
+}
+.final{
+   
+    background:
+        linear-gradient(
+            120deg,
+            var(--amarelo),
+            var(--laranja));
+             color: whitesmoke;
+    text-align: center;
+    height: 200px;
+
+}
+.final h1{
+    font-size: 42px;
+}
+footer{
+    background-color: black;
+}
+.footer{
+    
+    display: flex;
+  justify-content: flex-start;
+    color: white;
+    justify-content: space-between;
+    height: 80px;
+}
+.footer a{
+    color: white;
+    text-decoration: none;
+   margin: 10px  ;
+}
+.dev{
+    color: white;
+    text-align: center;
+}
+img:hover{
+    transform: translateY(-10px);
+}
+button:hover{
+    transform: translateY(-10px);
+}
+img{
+     transition: transform 0.3s ease;
+}
+
+@media (max-width: 800px) {
+    #intro-img{
+        grid-template-columns: 1fr;
+        gap: 23px;
+    }
+}
+@media (max-width: 800px) {
+    #Sobre-T {
+        grid-template-columns: 1fr;
+        gap: 23px;
+    }
+}
+
+@media (max-width: 800px) {
+    .PP-img {
+        grid-template-columns: 1fr;
+        gap: 23px;
+    }
+}
+nav a:hover{
+    color: #800080;
+}

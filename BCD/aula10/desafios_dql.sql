@@ -142,9 +142,14 @@ SELECT c.nome as nome , Ip.quantidade as qtde_pedida , Ip.quantidade * Ip.preco_
 from clientes as c
 LEFT JOIN item_pedido as Ip 
 ON c.id_cliente = id_produto
++-
 ORDER BY subtotal DESC;
 -- 22. Mostre a quantidade de produtos e o preço médio de cada categoria.
 
+SELECT nome,preco 
+FROM produto
+WHERE preco >(SELECT AVG(preco)from produto)
+ORDER BY preco DESC;
 
 -- 23. Descubra quais produtos possuem preço superior ao preço médio geral.
 
