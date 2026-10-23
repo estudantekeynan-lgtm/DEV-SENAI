@@ -230,3 +230,6 @@ nav a:hover{
 #aperta:hover{
     background-color: #800080;
 }
+a:hover{
+    color: #800080;
+}

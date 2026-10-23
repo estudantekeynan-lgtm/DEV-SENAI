@@ -167,9 +167,10 @@ SELECT * FROM clientes
 
 
 -- 19. Tente criar um pedido com id_cliente = 9999.
-INSERT INTO
+INSERT INTO clientes (id_cliente,nome,cidade,email,telefone,ativo)VALUES
+(999,'joana','Piracicaba','testee@email.com','1999699999',TRUE);
 -- Qual restrição impediu a operação?
-
+-- Nenhuma restrição
 
 -- 20. Escreva em comentários a diferença entre os três erros anteriores.
 
