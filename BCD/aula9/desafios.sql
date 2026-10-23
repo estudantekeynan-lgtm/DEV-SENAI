@@ -151,3 +151,48 @@ SELECT*FROM categoria;
 DELETE FROM categoria
 WHERE id_categoria = 8
 
+--17. Tente inserir um produto com id_categoria = 9999.
+INSERT INTO produto (id_categoria) VALUES (999)
+-- Qual restrição impediu a operação?
+-- O AUTO_INCREMENT não permite que a gente insira valores no id 
+
+
+-- 18. Tente cadastrar um cliente usando 'ana@email.com'.
+INSERT INTO clientes (nome,cidade,email,telefone,ativo) VALUES
+('Ana','Piracicaba','ana@email.com','1999999999',TRUE);
+SELECT * FROM clientes
+-- Qual restrição impediu a operação?
+--email repito não são permitidos
+
+
+
+-- 19. Tente criar um pedido com id_cliente = 9999.
+INSERT INTO
+-- Qual restrição impediu a operação?
+
+
+-- 20. Escreva em comentários a diferença entre os três erros anteriores.
+
+
+-- PARTE E - DESAFIO COMPLETO COM TRANSAÇÃO
+
+-- 21. Inicie uma transação.
+
+
+-- 22. Dentro dela, cadastre um cliente, um pedido e dois itens relacionados.
+
+
+-- 23. Faça uma consulta com JOIN comprovando que os registros existem
+--     enquanto a transação está aberta.
+
+
+-- 24. Execute ROLLBACK e depois use SELECT para provar que o cadastro foi desfeito.
+
+
+-- 25. Repita o processo com novos dados e finalize usando COMMIT.
+--     Depois consulte os registros persistidos.
+
+
+-- DESAFIO EXTRA
+-- 26. Escolha uma situação realista do SmartCoffee que exija INSERT + UPDATE
+--     ou UPDATE + DELETE lógico. Descreva a regra de negócio e implemente.
