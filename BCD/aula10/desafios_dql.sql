@@ -145,22 +145,37 @@ ON c.id_cliente = id_produto
 +-
 ORDER BY subtotal DESC;
 -- 22. Mostre a quantidade de produtos e o preço médio de cada categoria.
+SELECT ca.nome as categoria, COUNT(PR.id_produto) as produtos, ROUND(AVG(PR.preco),2) as Preco_medio
+FROM categoria as ca 
+INNER JOIN produto as pr 
+on pr.id_categoria = ca.id_categoria
+GROUP BY Ca.id_categoria, ca.nome 
+ORDER BY preco_medio DESC;
 
+
+-- 23. Descubra quais produtos possuem preço superior ao preço médio geral.
 SELECT nome,preco 
 FROM produto
 WHERE preco >(SELECT AVG(preco)from produto)
 ORDER BY preco DESC;
 
--- 23. Descubra quais produtos possuem preço superior ao preço médio geral.
-
-
 -- 24. Classifique os produtos como Econômico, Intermediário ou Premium.
 --     Defina e informe suas faixas de preço.
-
+SELECT nome,preco, 
+CASE 
+    WHEN preco < 8.00 THEN 'Economico'  
+    WHEN preco < 15.00 THEN 'Intermediario'  
+    ELSE  'Premium'
+END as faixa_precos
+FROM produto 
+ORDER BY preco;
 
 -- 25. CONSULTA AUTORAL
 -- Pergunta de negócio:
---
+
+Quais produtos são acessiveis? 
+
 -- Por que essa informação é útil?
---
+Ela seria util para o público de baixa renda 
 -- Consulta:
+SELECT nome,preco FROM produto WHERE preco <10 ;
