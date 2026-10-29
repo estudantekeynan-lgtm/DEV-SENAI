@@ -80,7 +80,7 @@ INSERT INTO cliente VALUES(0,'Keynan Santos','keynan@gmail.com','Limeira');
 
 SELECT * FROM cliente;
 
-
+INSERT INTO categoria VALUES (DEFAULT,'Cafés');
 
 
 
