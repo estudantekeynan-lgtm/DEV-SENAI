@@ -34,7 +34,7 @@ CREATE Table emprestimo (
     data_emprestimo DATETIME DEFAULT CURRENT_TIMESTAMP,
     data_prevista DATE not NULL,
     data_devolucao DATE,
-    status_emprestimo VARCHAR(20) DEFAULT 'Aberto' check (status_emprestimo = 'Aberto'),
+    status_emprestimo VARCHAR(20) DEFAULT 'Aberto' check (status_emprestimo in 'Aberto','Devolvido','Atrasado'),
     constraint pk_emprestimo PRIMARY KEY (id_emprestimo),
     id_usuario INT not NULL,
     constraint fk_usuario_emprestimo FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
@@ -139,6 +139,22 @@ FROM emprestimo as ep
 INNER JOIN usuario as U
 INNER JOIN livro as L ;
 
+SELECT  
+    U.id_usuario,
+    U.nome,
+    COUNT(ep.id_emprestimo) AS total_pendente
+FROM usuario AS U
+INNER JOIN emprestimo AS ep ON U.id_usuario = ep.id_usuario
+
+GROUP BY 
+    U.id_usuario, 
+    U.nome;
+
+SELECT L.titulo, COUNT(ep.id_emprestimo) AS vezes_emprestado
+FROM livro AS L
+INNER JOIN emprestimo AS ep ON L.id_livro = ep.id_livro
+WHERE ep.status_emprestimo = 'Aberto'
+GROUP BY L.id_livro, L.titulo;
 
 
 
@@ -153,9 +169,88 @@ WHERE status_emprestimo = 'Aberto';
 
 -- 19
 
+SELECT u.nome AS USUARIO, COUNT(e.id_emprestimo) AS QUANTIDADE_EMPRESTIMOS
+FROM usuario AS u
+INNER JOIN emprestimo AS e
+ON e.id_usuario = u.id_usuario
+GROUP BY u.id_usuario, u.nome
+ORDER BY QUANTIDADE_EMPRESTIMOS DESC;
 
 
 
+-- 20 
+
+SELECT u.nome, COUNT(ep.id_emprestimo) as qtde_emprestimo 
+FROM usuario as u 
+INNER JOIN emprestimo as ep 
+on u.id_usuario = id_emprestimo
+GROUP BY id_emprestimo;
+
+
+
+-- 21
+SELECT* FROM livro;
+
+START TRANSACTION;
+
+INSERT INTO emprestimo VALUES
+(0,DEFAULT,'2026-11-24','2026-11-27',DEFAULT,3,7);
+
+UPDATE livro
+SET quantidade_disponivel = quantidade_disponivel - 1
+WHERE id_livro = 10;
+COMMIT;
+
+-- 22 
+
+START TRANSACTION;
+SELECT* FROM livro;
+
+UPDATE livro
+SET quantidade_disponivel = quantidade_disponivel - 3
+WHERE id_livro = 10;
+
+ROLLBACK;
+
+
+-- 23 
+
+START TRANSACTION;
+SELECT* FROM livro;
+
+UPDATE livro
+SET quantidade_disponivel = quantidade_disponivel - 2
+WHERE id_livro = 10;
+UPDATE livro
+SET quantidade_disponivel = quantidade_disponivel - 2
+WHERE id_livro = 12;
+
+
+SAVEPOINT reajuste
+
+ROLLBACK to SAVEPOINT reajuste
+
+
+
+ROLLBACK;
+
+
+
+
+-- 24 
+
+
+
+SELECT * FROM emprestimo;
+
+
+UPDATE emprestimo
+SET status_emprestimo = 'Devolvido' 
+WHERE id_emprestimo = 4;
+
+
+ALTER Table emprestimo 
+MODIFY  status_emprestimo VARCHAR(20) DEFAULT 'Aberto' check (status_emprestimo in ('Aberto','Devolvido','Atrasado'));
 
 
 
