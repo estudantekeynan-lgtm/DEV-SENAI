@@ -1,0 +1,44 @@
+.imagem-intro img{
+    width: 80%;
+    height: 60%;
+    
+}
+
+.responsiva{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.imagem-rec img{
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    object-position: 70% center;
+}
+.grid{
+    display: flex;
+}
+
+.imagem-capa{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.imagem-ava img{
+    width: 120px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 70%;
+}
+.seven{
+    border-radius: 18px;
+    box-shadow: 0 10px 40px rgba(red, green, blue, alpha);
+    transition: transform .25s ease, filter .25 ease;
+}
+
+.seven:hover{
+    transform: scale(1.03);
+    filter: saturate(1.08) contrast(1.03);
+}

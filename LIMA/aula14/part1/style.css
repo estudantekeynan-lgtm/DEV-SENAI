@@ -1,0 +1,17 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    color: white;
+    background-color: black;
+}   
+
+h2{
+    color: #1919a1fd;
+    -webkit-text-stroke: 0.3px white;
+}
+h1{
+    color: red;
+    -webkit-text-stroke: 0.3px white;
+}
+
