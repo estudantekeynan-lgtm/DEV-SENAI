@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nome": "Keynan",
+    "idade": 17,
+    "funcao": "ceo"
+  },
+  {
+    "id": 2,
+    "nome": "gabi",
+    "idade": 17,
+    "funcao": "design"
+  },
+  {
+    "id": 3,
+    "nome": "Davi",
+    "idade": 16,
+    "funcao": "Dev"
+  },
+  {
+    "id": 4,
+    "nome": "Luana",
+    "idade": 14,
+    "funcao": "tester"
+  }
+]
