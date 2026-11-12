@@ -1,42 +1,123 @@
--- Active: 1794483871965@@127.0.0.1@3308@mysql
--- criar tabelas - usuario,livro,emprestimo,
-CREATE DATABASE if not EXISTS biblioteca_som2_Keynan;
-use biblioteca_som2_Keynan;
+-- Active: 1794483871965@@127.0.0.1@3308@biblioteca_som2_keynan
 
---2
-CREATE Table usuario(
-    id_usuario INT AUTO_INCREMENT,
-    nome VARCHAR (100) NOT NULL,
-    email VARCHAR(120) not NULL UNIQUE,
-    telefone VARCHAR(20),
-    ativo BOOLEAN DEFAULT true,
-    constraint pk_usuario PRIMARY KEY (id_usuario)
+-- 1 - CRIAR BANCO DE DADOS
+CREATE DATABASE IF NOT EXISTS biblioteca_som2_Keynan;
+USE biblioteca_som2_Keynan;
+
+-- 2 - TABELA USUARIO
+CREATE TABLE IF NOT EXISTS USUARIO (
+    ID_USUARIO INT AUTO_INCREMENT,
+    NOME VARCHAR(100) NOT NULL,
+    EMAIL VARCHAR(120) NOT NULL UNIQUE,
+    TELEFONE VARCHAR(20),
+    ATIVO BOOLEAN DEFAULT TRUE,
+    CONSTRAINT PK_USUARIO PRIMARY KEY (ID_USUARIO)
 );
 
---3
-CREATE Table livro(
-    id_livro int AUTO_INCREMENT,
-    titulo VARCHAR(150) not NULL,
-    autor VARCHAR (120) NOT NULL,
-    isbn CHAR(13) NOT NULL UNIQUE,
-    --ano_publicacao poderia ser year ou date ao invés de int ,
-    ano_publicacao int,
-    quantidade_disponivel INT DEFAULT 0 check (quantidade_disponivel >= 0),
-    
-    constraint pk_livro PRIMARY KEY (id_livro)
-
+-- 3 - TABELA CATEGORIA
+CREATE TABLE IF NOT EXISTS CATEGORIA (
+    ID_CATEGORIA INT AUTO_INCREMENT,
+    NOME VARCHAR(80) NOT NULL UNIQUE,
+    CONSTRAINT PK_CATEGORIA PRIMARY KEY (ID_CATEGORIA)
 );
 
---4
-CREATE Table emprestimo (
-    id_emprestimo int AUTO_INCREMENT,
-    data_emprestimo DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_prevista DATE not NULL,
-    data_devolucao DATE,
-    status_emprestimo VARCHAR(20) DEFAULT 'Aberto' check (status_emprestimo in 'Aberto','Devolvido','Atrasado'),
-    constraint pk_emprestimo PRIMARY KEY (id_emprestimo),
-    id_usuario INT not NULL,
-    constraint fk_usuario_emprestimo FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
-    id_livro INT NOT NULL,
-    constraint fk_livro_emprestimo FOREIGN KEY (id_livro) REFERENCES livro (id_livro)
+-- 4 - TABELA FORNECEDOR
+CREATE TABLE IF NOT EXISTS FORNECEDOR (
+    ID_FORNECEDOR INT AUTO_INCREMENT,
+    CNPJ VARCHAR(20) NOT NULL,
+    RAZAO_SOCIAL VARCHAR(80) NOT NULL,
+    CONSTRAINT PK_FORNECEDOR PRIMARY KEY (ID_FORNECEDOR),
+    CONSTRAINT UQ_CNPJ UNIQUE (CNPJ)
 );
+
+-- 5 - TABELA LIVRO
+CREATE TABLE IF NOT EXISTS LIVRO (
+    ID_LIVRO INT AUTO_INCREMENT,
+    TITULO VARCHAR(150) NOT NULL,
+    AUTOR VARCHAR(120) NOT NULL,
+    ISBN CHAR(13) NOT NULL,
+    ANO_PUBLICACAO INT,
+    QUANTIDADE_DISPONIVEL INT DEFAULT 0 CHECK
+    (QUANTIDADE_DISPONIVEL >= 0),
+    ID_CATEGORIA INT NOT NULL,
+
+    CONSTRAINT PK_LIVRO PRIMARY KEY (ID_LIVRO),
+    CONSTRAINT UQ_ISBN UNIQUE (ISBN),
+    CONSTRAINT FK_LIVRO_CATEGORIA
+    FOREIGN KEY (ID_CATEGORIA)
+    REFERENCES CATEGORIA(ID_CATEGORIA)
+);
+
+-- 6 - TABELA EMPRESTIMO
+CREATE TABLE IF NOT EXISTS EMPRESTIMO (
+    ID_EMPRESTIMO INT AUTO_INCREMENT,
+    DATA_EMPRESTIMO DATETIME DEFAULT CURRENT_TIMESTAMP,
+    DATA_PREVISTA DATE NOT NULL,
+    DATA_DEVOLUCAO DATE,
+    STATUS_EMPRESTIMO VARCHAR(20) DEFAULT 'Aberto'
+    CHECK (STATUS_EMPRESTIMO IN ('Aberto','Devolvido','Atrasado')),
+
+    ID_USUARIO INT NOT NULL,
+    ID_LIVRO INT NOT NULL,
+
+    CONSTRAINT PK_EMPRESTIMO PRIMARY KEY (ID_EMPRESTIMO),
+
+    CONSTRAINT FK_USUARIO_EMPRESTIMO
+    FOREIGN KEY (ID_USUARIO)
+    REFERENCES USUARIO(ID_USUARIO),
+
+    CONSTRAINT FK_LIVRO_EMPRESTIMO
+    FOREIGN KEY (ID_LIVRO)
+    REFERENCES LIVRO(ID_LIVRO)
+);
+
+ALTER Table livro ADD editora VARCHAR(100);
+
+INSERT INTO usuario VALUES 
+(0,'Keynan','keynan@gmail.com','19999999',DEFAULT),
+(0,'Bruno','bruno@gmail.com',NULL,FALSE),
+(0,'Luana','luana@gmail.com','111111111',DEFAULT),
+(0,'Julia','julia@gmail.com','22222222',DEFAULT);
+
+
+INSERT INTO LIVRO (TITULO, AUTOR, ISBN, ANO_PUBLICACAO, QUANTIDADE_DISPONIVEL, EDITORA, ID_CATEGORIA)
+VALUES
+('Dom Casmurro', 'Machado de Assis', '9788535910663', 1899, 10, 'Companhia das Letras', 1),
+
+('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', '9788522031445', 1943, 1, 'Agir', 2),
+
+('1984', 'George Orwell', '9788535914849', 1949, 3, 'Companhia das Letras', 3),
+
+('Harry Potter e a Pedra Filosofal', 'J.K Rowling', '9788532530783', 1997, 7, 'Rocco', 4),
+
+('O Código Da Vinci', 'Dan Brown', '9788575421130', 2003, 3, 'Sextante', 5),
+
+('A Culpa é das Estrelas', 'John Green', '9788580572261', 2012, 30, 'Intrínseca', 6);
+INSERT INTO CATEGORIA (NOME) VALUES
+('Literatura Brasileira'),
+('Infantil'),
+('Ficção Científica'),
+('Fantasia'),
+('Suspense'),
+('Romance');
+
+INSERT INTO EMPRESTIMO VALUES
+(0, DEFAULT, '2026-11-24', NULL, DEFAULT, 1, 17),
+(0, DEFAULT, '2026-11-24', NULL, DEFAULT, 2, 15),
+(0, DEFAULT, '2026-11-24', NULL, DEFAULT, 4, 14);
+
+SELECT * FROM USUARIO;
+
+SELECT * FROM LIVRO;
+
+
+update usuario
+set telefone = '1111111111'
+where id_usuario = 1;
+
+UPDATE LIVRO
+SET QUANTIDADE_DISPONIVEL = QUANTIDADE_DISPONIVEL + 2
+WHERE ANO_PUBLICACAO >= 2020;
+
+INSERT INTO USUARIO (NOME, EMAIL, TELEFONE, ATIVO) VALUES
+('TEMPORARIO', 'TEMPORARIO@EMAIL.COM', '12312154564', TRUE);
