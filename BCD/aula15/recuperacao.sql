@@ -106,3 +106,174 @@ INSERT INTO jogo VALUES
 
 
 -- 9 
+
+
+INSERT INTO locacao VALUES
+(DEFAULT,now (),'2026-11-24','2026-11-25',DEFAULT,2,3),
+(DEFAULT,now(),'2026-11-24','2026-11-25',DEFAULT,4,1),
+(DEFAULT,now(),'2026-11-24','2026-11-25',DEFAULT,3,2);
+
+SELECT * FROM locacao;
+
+-- 10 
+
+UPDATE cliente 
+SET telefone = '11113435'
+WHERE id_cliente = 3;
+
+-- 11 
+UPDATE jogo 
+SET quantidade_disponivel = quantidade_disponivel + 2
+WHERE ano_lancamento >= 2000;
+
+
+-- 12
+INSERT INTO cliente VALUES
+(DEFAULT,'teste','teste@gmail.com','1999999',DEFAULT);
+
+DELETE FROM cliente WHERE nome = 'teste';
+
+DELETE FROM cliente WHERE id_cliente =2;  
+-- Não pode excluir pois fala que o mesmo pertence a mais de uma tabela
+
+
+-- 13  
+
+SELECT titulo,ano_lancamento,quantidade_disponivel FROM jogo;
+
+
+
+-- 14 
+
+ SELECT *FROM jogo WHERE quantidade_disponivel>2 ORDER BY quantidade_disponivel DESC ;
+
+
+ -- 15 
+
+ SELECT * FROM jogo WHERE titulo LIKE "%god%";
+
+
+-- 16
+
+SELECT * FROM jogo WHERE ano_lancamento BETWEEN 2020 AND 2026; 
+
+
+
+-- 17
+
+SELECT COUNT(*) FROM jogo; -- Possui 6 jogos diferentes
+SELECT  MIN(quantidade_disponivel) as qtde_min FROM jogo; -- jogo com menos quantidade disponivel
+
+SELECT MAX(quantidade_disponivel) as qtde_MAX FROM jogo; -- jogo com maior quantidade disponivel
+
+
+-- 18 
+
+
+SELECT
+    L.id_locacao,
+    C.nome AS cliente,
+    J.titulo AS jogo,
+    L.data_retirada,
+    L.status_locacao
+FROM LOCACAO L
+INNER JOIN CLIENTE C ON C.id_cliente = L.id_cliente
+INNER JOIN JOGO J ON J.id_jogo = L.id_jogo;
+
+
+
+
+
+
+-- 19 
+
+SELECT
+    L.id_locacao,
+    C.nome AS cliente,
+    J.titulo AS jogo,
+    L.data_retirada,
+    L.status_locacao
+FROM LOCACAO L
+INNER JOIN CLIENTE C ON C.id_cliente = L.id_cliente
+INNER JOIN JOGO J ON J.id_jogo = L.id_jogo
+WHERE L.status_locacao = 'ABERTA';
+
+
+
+
+
+
+-- 20 
+SELECT
+    C.id_cliente,
+    C.nome AS cliente,
+    COUNT(L.id_locacao) AS quantidade_locacoes
+FROM CLIENTE C
+INNER JOIN LOCACAO L ON L.id_cliente = C.id_cliente
+GROUP BY C.id_cliente, C.nome
+ORDER BY quantidade_locacoes DESC;
+
+
+
+-- 21 
+SELECT
+    C.id_cliente,
+    C.nome AS cliente,
+    COUNT(L.id_locacao) AS quantidade_locacoes
+FROM CLIENTE C
+LEFT JOIN LOCACAO L ON L.id_cliente = C.id_cliente
+GROUP BY C.id_cliente, C.nome
+ORDER BY quantidade_locacoes DESC, C.nome;
+
+
+
+-- 22
+
+
+
+START TRANSACTION;
+SELECT* FROM jogo;
+
+UPDATE jogo
+SET quantidade_disponivel = quantidade_disponivel - 3
+WHERE id_jogo = 3;
+
+ROLLBACK;
+
+COMMIT;
+
+
+-- 23 
+
+START TRANSACTION;
+SELECT* FROM jogo;
+
+UPDATE jogo
+SET quantidade_disponivel = quantidade_disponivel - 3
+WHERE id_jogo = 3;
+
+ROLLBACK;
+
+-- 24 
+
+START TRANSACTION;
+SELECT* FROM jogo;
+
+UPDATE jogo
+SET quantidade_disponivel = quantidade_disponivel + 100
+WHERE id_jogo = 3 and 2;
+
+SAVEPOINT reajuste
+
+ROLLBACK to reajuste;
+
+
+-- 25
+
+
+
+UPDATE locacao
+SET status_locacao = 'Devolvida' 
+WHERE id_locacao = 2;
+
+COMMIT;
