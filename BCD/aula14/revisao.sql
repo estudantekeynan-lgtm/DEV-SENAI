@@ -121,3 +121,15 @@ WHERE ANO_PUBLICACAO >= 2020;
 
 INSERT INTO USUARIO (NOME, EMAIL, TELEFONE, ATIVO) VALUES
 ('TEMPORARIO', 'TEMPORARIO@EMAIL.COM', '12312154564', TRUE);
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+
+
