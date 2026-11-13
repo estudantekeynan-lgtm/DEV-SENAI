@@ -25,6 +25,9 @@ header{
     text-decoration: none;
     color: white;
 }
+.inicio a:hover{
+    color: var(--Azul_claro);
+}
 img{
     width: 100%;
     display: block;
@@ -38,6 +41,9 @@ img{
     height: 45px;
     background-color: var(--Azul);
     color: white;
+}
+.explorar:hover{
+    background-color: #B9D9E5;
 }
 
 .introducao{
