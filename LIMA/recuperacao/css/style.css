@@ -1,0 +1,113 @@
+:root{
+    --Azul: #25334B;
+    --Cinza: #E9EDF3;
+    --Azul_claro: #B9D9E5;
+}
+body{
+    margin: 0;
+    box-sizing: border-box;
+    background-color: var(--Cinza);
+}
+
+header{
+    background-color: var(--Azul);
+   
+}
+
+.inicio {
+     display: flex;
+    justify-content: center;
+    color: white;
+    gap: 20px;
+    
+}
+.inicio a{
+    text-decoration: none;
+    color: white;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.introducao img{
+    width: 350px ;
+    height: 250px;
+}
+.explorar{
+    width: 175px;
+    height: 45px;
+    background-color: var(--Azul);
+    color: white;
+}
+
+.introducao{
+    background-color: var(--Azul_claro);
+    margin: 10px;
+}
+
+.info {
+   text-align: center;
+}
+
+.Ilustrativo{
+    display: flex;
+   justify-content: center;
+}
+
+.Ilustrativo button{
+    margin: 75px;
+    
+}
+
+.cards {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s;
+}
+
+.card-img:hover{
+     transform: translateY(-8px);
+    box-shadow: 0 22px 34px -14px var(--Azul);
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+table{
+    table-layout: 50%;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing:10px;
+   background-color: white;
+   width: 1;
+}
+
+.sobre{
+    background-color: white;
+    margin: 10px;
+}
+.final{
+    display: flex;
+    justify-content: center;
+    gap: 10px   ;
+    margin: 30px;
+}
+footer{
+    background-color: var(--Azul);
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+footer a{
+    text-decoration: none;
+    color: white;
+    gap: 15px   ;
+}
+
+@media (max-width:800px){
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
