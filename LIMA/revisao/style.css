@@ -1,0 +1,51 @@
+body{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 1px solid crimson;
+}
+
+.titulo h3{
+    display: flex;
+    justify-content: flex-start;
+}
+.titulo {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.titulo span{
+    color: #dada07;
+}
+.titulo h3{
+    color: black;
+}
+
+.titulo a{
+    text-decoration: none;
+    list-style: none;
+}
+
+.nav{
+    display: flex;
+      text-decoration: none;
+    list-style: none;
+    justify-content: space-between;
+    gap: 38px;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+.conteudo{
+    display: flex;
+    gap: 20px;
+}
+.conteudo-art {
+    display: flex;
+    flex-wrap: nowrap;
+    letter-spacing: 2px;
+    border: 1px solid #dedede;
+}
