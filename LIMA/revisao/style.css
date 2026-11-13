@@ -49,3 +49,23 @@ img{
     letter-spacing: 2px;
     border: 1px solid #dedede;
 }
+.conteudo-img {
+    width: 100%;
+    float: left;
+    margin: 24px 12px 12px 24px;
+}
+
+.galeria {
+    margin: 0;
+    padding: 24px;
+    background-color: #dedede;
+}
+
+.galeria img{
+    display: grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap: 48px;
+    border: 2px solid #dedede;
+    border-radius: 300px;
+    
+}
