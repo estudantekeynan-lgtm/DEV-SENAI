@@ -73,3 +73,13 @@ img{
  img:hover{
     transform: translateY(-10px);
 }
+
+.imagem-img {
+    display: flex;
+    object-fit: cover;
+    object-position: right;
+}
+.titulo{
+    display: flex;
+    background-image: linear-gradient(to right, #FF3D81, #FF3D81);
+}
