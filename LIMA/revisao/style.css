@@ -68,4 +68,8 @@ img{
     border: 2px solid #dedede;
     border-radius: 300px;
     
+    
+}
+ img:hover{
+    transform: translateY(-10px);
 }
