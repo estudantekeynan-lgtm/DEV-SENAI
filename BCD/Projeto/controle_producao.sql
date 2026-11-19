@@ -22,6 +22,7 @@ CREATE Table if not exists maquina (
     constraint fk_operador_maquina FOREIGN KEY (id_operador) REFERENCES operadores (id_operador)
 );
 
+ALTER Table maquina SET 
 
 CREATE Table if not exists produto (
     id_produto INT AUTO_INCREMENT,
