@@ -22,7 +22,11 @@ CREATE Table if not exists maquina (
     constraint fk_operador_maquina FOREIGN KEY (id_operador) REFERENCES operadores (id_operador)
 );
 
-ALTER Table maquina SET 
+ALTER TABLE maquina
+DROP FOREIGN KEY fk_operador_maquina;
+ALTER TABLE maquina
+DROP COLUMN id_operador;
+
 
 CREATE Table if not exists produto (
     id_produto INT AUTO_INCREMENT,
@@ -31,6 +35,13 @@ CREATE Table if not exists produto (
     preco  DECIMAL(10,2) not NULL,
     constraint pk_produto PRIMARY KEY (id_produto)
 );
+
+ALTER TABLE produto
+DROP COLUMN quantidade;
+
+ALTER TABLE operadores
+ADD CONSTRAINT chk_turno
+CHECK (turno IN ('diurno', 'noturno'));
 
 CREATE Table if NOT exists ordem_producao(
     id_ordem int AUTO_INCREMENT,
